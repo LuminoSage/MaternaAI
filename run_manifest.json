@@ -1,0 +1,89 @@
+{
+  "timestamp": "2026-03-13T22:37:36.342793Z",
+  "random_seeds": {
+    "numpy": 42,
+    "sklearn": 42,
+    "xgboost": 42,
+    "catboost": 42,
+    "optuna": 42
+  },
+  "dataset": {
+    "rows": 16900,
+    "features": 31,
+    "countries": 10
+  },
+  "splits": {
+    "train": 12495,
+    "test": 2205,
+    "vietnam": 2200
+  },
+  "leakage_audit": {
+    "train_test_duplicates": 0,
+    "train_vietnam_duplicates": 0,
+    "suspicious_features": 0
+  },
+  "metrics_test": {
+    "ROC_AUC_delong": 0.9999,
+    "ROC_AUC_CI": [
+      0.9999,
+      1.0
+    ],
+    "AUPRC": 0.9999,
+    "AUPRC_CI": [
+      0.9997,
+      1.0
+    ],
+    "Brier": 0.0121,
+    "Sens_at_80spec": 1.0
+  },
+  "metrics_vietnam": {
+    "ROC_AUC_delong": 0.9655,
+    "ROC_AUC_CI": [
+      0.9569,
+      0.974
+    ],
+    "AUPRC": 0.9164
+  },
+  "fairness_spread": {
+    "AUC_spread": 0.0192,
+    "verdict": "FAIR"
+  },
+  "packages": {
+    "numpy": "2.4.3",
+    "pandas": "2.3.3",
+    "sklearn": "1.8.0",
+    "xgboost": "3.2.0",
+    "catboost": "1.2.10",
+    "optuna": "4.7.0",
+    "joblib": "1.5.3"
+  },
+  "model_files": {
+    "cat_model.cbm": "331.7 KB",
+    "feature_list.pkl": "0.5 KB",
+    "label_encoder.pkl": "0.3 KB",
+    "materna_pipeline_bundle.pkl": "3133.2 KB",
+    "materna_xgb_model.pkl": "3878.9 KB",
+    "preprocessor.pkl": "6.3 KB",
+    "xgb_model.json": "2070.4 KB"
+  },
+  "shap": {
+    "n_samples": 600,
+    "shap_idx_seed": 42,
+    "model": "ensemble_XGBoost_CatBoost_averaged",
+    "feature_alignment": "get_feature_names_out()",
+    "top3_features": [
+      "Hemoglobin",
+      "BMI",
+      "ANC visits"
+    ],
+    "xgb_cat_top10_agreement": "9/10",
+    "outputs": [
+      "shap_dashboard_v2.png",
+      "shap_dashboard_v2.pdf",
+      "shap_force_true_positive.html",
+      "shap_force_false_negative.html",
+      "shap_force_false_positive.html",
+      "patient_stories.txt"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Model files (too large for GitHub — use Git LFS or keep local)
+model/*.pkl
+model/*.cbm
+model/*.json
+model/
+
+# Data files (large)
+data/*.csv
+data/*.png
+data/*.pdf
+
+# Logs
+logs/
+*.log
+*.jsonl
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets
+*.env
+.env
+config_secret.json

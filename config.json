@@ -1,0 +1,16 @@
+{
+  "model_dir": "model",
+  "data_dir": "data",
+  "log_dir": "logs",
+  "app_name": "MaternaAI",
+  "app_version": "2.0.0",
+  "hackathon": "ASEAN AI Hackathon 2026",
+  "default_language": "en",
+  "temp_unit": "celsius",
+  "offline_mode": false,
+  "demo_mode_on_error": true,
+  "audit_log_enabled": true,
+  "telemetry_opt_in": false,
+  "inference_warn_ms": 100,
+  "auth_enabled": false
+}

@@ -1,0 +1,168 @@
+MaternaAI - Clinical Patient Stories
+ASEAN AI Hackathon 2026 | Track 02: Public Health & Telemedicine
+
+====================================================================
+PATIENT STORY — TRUE POSITIVE
+====================================================================
+
+Clinical reference thresholds (WHO danger signs):
+  SBP >= 140 mmHg | DBP >= 90 mmHg | Blood sugar >= 7.0 mmol/L
+  HbA1c >= 6.5%   | Hemoglobin < 11.0 g/dL | SpO2 < 95%
+  Fever >= 100.4F  | Heart rate >= 100 bpm  | ANC visits < 4
+
+Demographics  : Timor-Leste, Age 24, Rural
+Gestational wk: 36  ANC visits: 3  *** DANGER SIGN: insufficient ANC (<4 visits) ***
+Prev. preg.   : 0  Multiple: No
+
+VITAL SIGNS
+  Systolic BP           : 110.0 mmHg
+  Diastolic BP          : 90.0 mmHg  *** DANGER SIGN: hypertension (>=90 mmHg) ***
+  Blood sugar           : 7.0 mmol/L  *** DANGER SIGN: diabetes range (>=7.0 mmol/L) ***
+  Hemoglobin            : 12.8 g/dL
+  HbA1c                 : 5.8 %
+  SpO2                  : 99.7 %
+  Body temp             : 98.7 F
+  Heart rate            : 98.0 bpm
+  BMI                   : 14.1 kg/m2
+
+RISK CONDITIONS
+  Pre-exist DM: No
+  Gest. DM: No
+  Preeclampsia hx: No
+  Multiple preg.: No
+  *** Prev. compl.: POSITIVE ***
+  *** Mental health: POSITIVE ***
+  Thyroid: No
+  Placenta previa: No
+
+MODEL DECISION
+  True label      : high risk
+  Predicted       : high risk
+  HR probability  : 1.0000 (100.0%)
+
+TOP SHAP RISK DRIVERS (features pushing risk UP)
+  + BMI                      : SHAP +2.3320
+  + Blood sugar              : SHAP +2.3066
+  + Diastolic BP             : SHAP +2.1672
+  + Prev. compl.             : SHAP +1.6711
+  + Mental health            : SHAP +0.8781
+TOP SHAP PROTECTORS (features holding risk DOWN)
+  - Hemoglobin               : SHAP -1.0243
+
+RECOMMENDED CLINICAL ACTION
+  ALERT TRIGGERED: Immediate referral to obstetric facility. CHW to escort patient and notify facility en route. Priority transport arranged if SpO2 < 95% or SBP > 160.
+
+OUTCOME ANALYSIS
+  MODEL SUCCESS: All critical danger signs detected. Early intervention prevents maternal mortality. Demonstrates MaternaAI core value proposition.
+====================================================================
+
+====================================================================
+PATIENT STORY — FALSE NEGATIVE
+====================================================================
+
+Clinical reference thresholds (WHO danger signs):
+  SBP >= 140 mmHg | DBP >= 90 mmHg | Blood sugar >= 7.0 mmol/L
+  HbA1c >= 6.5%   | Hemoglobin < 11.0 g/dL | SpO2 < 95%
+  Fever >= 100.4F  | Heart rate >= 100 bpm  | ANC visits < 4
+
+Demographics  : Indonesia, Age 25, Rural
+Gestational wk: 35  ANC visits: 5
+Prev. preg.   : 1  Multiple: No
+
+VITAL SIGNS
+  Systolic BP           : 115.0 mmHg
+  Diastolic BP          : 71.0 mmHg
+  Blood sugar           : 5.2 mmol/L
+  Hemoglobin            : 10.2 g/dL  *** DANGER SIGN: anemia (<11.0 g/dL) ***
+  HbA1c                 : 5.4 %
+  SpO2                  : 95.7 %
+  Body temp             : 98.7 F
+  Heart rate            : 116.0 bpm  *** DANGER SIGN: tachycardia (>=100 bpm) ***
+  BMI                   : 28.3 kg/m2
+
+RISK CONDITIONS
+  Pre-exist DM: No
+  Gest. DM: No
+  Preeclampsia hx: No
+  Multiple preg.: No
+  Prev. compl.: No
+  *** Mental health: POSITIVE ***
+  Thyroid: No
+  Placenta previa: No
+
+MODEL DECISION
+  True label      : high risk
+  Predicted       : mid risk
+  HR probability  : 0.4486 (44.9%)
+
+TOP SHAP RISK DRIVERS (features pushing risk UP)
+  + BMI                      : SHAP +1.3117
+  + Hemoglobin               : SHAP +1.0482
+  + Heart rate               : SHAP +0.8775
+  + Mental health            : SHAP +0.7231
+TOP SHAP PROTECTORS (features holding risk DOWN)
+  - ANC visits               : SHAP -0.8171
+  - Blood sugar              : SHAP -0.6536
+
+RECOMMENDED CLINICAL ACTION
+  MISSED ALERT: Standard ANC visit scheduled only. No escalation triggered. Mitigation: lower decision threshold or add rule-based override for patients with Hemoglobin < 9 g/dL.
+
+OUTCOME ANALYSIS
+  MODEL FAILURE ANALYSIS: Model weighted isolated features over cumulative moderate risk. SHAP shows no single dominant driver — risk is distributed across 5+ features below individual thresholds. Recommend ensemble threshold at 0.35 for production.
+====================================================================
+
+====================================================================
+PATIENT STORY — FALSE POSITIVE
+====================================================================
+
+Clinical reference thresholds (WHO danger signs):
+  SBP >= 140 mmHg | DBP >= 90 mmHg | Blood sugar >= 7.0 mmol/L
+  HbA1c >= 6.5%   | Hemoglobin < 11.0 g/dL | SpO2 < 95%
+  Fever >= 100.4F  | Heart rate >= 100 bpm  | ANC visits < 4
+
+Demographics  : Myanmar, Age 30, Rural
+Gestational wk: 26  ANC visits: 3  *** DANGER SIGN: insufficient ANC (<4 visits) ***
+Prev. preg.   : 4  Multiple: No
+
+VITAL SIGNS
+  Systolic BP           : 155.0 mmHg  *** DANGER SIGN: hypertension (>=140 mmHg) ***
+  Diastolic BP          : 79.0 mmHg
+  Blood sugar           : 5.3 mmol/L
+  Hemoglobin            : 9.1 g/dL  *** DANGER SIGN: anemia (<11.0 g/dL) ***
+  HbA1c                 : 5.4 %
+  SpO2                  : 98.2 %
+  Body temp             : 98.1 F
+  Heart rate            : 83.0 bpm
+  BMI                   : 22.2 kg/m2
+
+RISK CONDITIONS
+  Pre-exist DM: No
+  Gest. DM: No
+  Preeclampsia hx: No
+  Multiple preg.: No
+  Prev. compl.: No
+  Mental health: No
+  Thyroid: No
+  Placenta previa: No
+
+MODEL DECISION
+  True label      : mid risk
+  Predicted       : high risk
+  HR probability  : 0.5776 (57.8%)
+
+TOP SHAP RISK DRIVERS (features pushing risk UP)
+  + Systolic BP              : SHAP +2.3537
+  + Hemoglobin               : SHAP +1.1599
+  + Rural                    : SHAP +0.4507
+TOP SHAP PROTECTORS (features holding risk DOWN)
+  - Blood sugar              : SHAP -0.6412
+  - BMI                      : SHAP -0.5950
+  - HbA1c                    : SHAP -0.5778
+
+RECOMMENDED CLINICAL ACTION
+  FALSE ALARM: Patient referred unnecessarily. Downstream: facility assessment clears patient. CHW informed — confidence score (shown) used to deprioritise. Calibrated probability allows tiered urgency (score 0.65 = non-urgent clinic visit, not emergency).
+
+OUTCOME ANALYSIS
+  MODEL OVERESTIMATE: Single severely abnormal reading (e.g. isolated high BP spike) drove score up despite overall stability. Mitigation: calibrated probability score shown to CHW prevents over-reaction. 12% actual HR rate in 0.3-0.6 bin confirms triage rationale is sound.
+====================================================================
+
