@@ -27,8 +27,7 @@ import joblib, os, json, time, logging, hashlib, threading
 from datetime import datetime, timezone
 from pathlib import Path
 
-# ── Cross-platform base path ──────────────────────────────────
-# Works on Windows, Linux, Docker, and CI
+
 APP_DIR = Path(__file__).parent.resolve()
 
 def load_config():
@@ -52,7 +51,7 @@ DATA_DIR = APP_DIR / CFG["data_dir"]
 LOG_DIR  = APP_DIR / CFG["log_dir"]
 LOG_DIR.mkdir(exist_ok=True)
 
-# ── Logging setup ─────────────────────────────────────────────
+
 logging.basicConfig(
     filename=str(LOG_DIR / "app.log"),
     level=logging.INFO,
@@ -60,7 +59,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("materna")
 
-# ── Page config ───────────────────────────────────────────────
+
 st.set_page_config(
     page_title=CFG["app_name"],
     page_icon="🤱",
@@ -69,7 +68,7 @@ st.set_page_config(
     menu_items={"About": f"{CFG['app_name']} — {CFG.get('hackathon','')}"}
 )
 
-# ── Load locales ──────────────────────────────────────────────
+
 @st.cache_data
 def load_locales():
     loc_path = APP_DIR / "locales.json"
@@ -89,7 +88,7 @@ def t(key, lang=None):
     l = lang or st.session_state.get("lang", "en")
     return LOCALES.get(l, {}).get(key) or LOCALES.get("en", {}).get(key, key)
 
-# ── Vivid, high-contrast CSS ─────────────────────────────────
+
 st.markdown("""
 <style>
   /* Main background — deep navy */
@@ -245,7 +244,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ── Model file checksum ───────────────────────────────────────
+
 def file_checksum(path, n=65536):
     h = hashlib.md5()
     try:
@@ -259,7 +258,7 @@ def file_checksum(path, n=65536):
 BUNDLE_PATH = MDL_DIR / "materna_pipeline_bundle.pkl"
 BUNDLE_CKSUM = file_checksum(BUNDLE_PATH)
 
-# ── Model loading with graceful demo fallback ─────────────────
+
 @st.cache_resource(hash_funcs={str: lambda x: x})
 def load_bundle(checksum: str):
     try:
@@ -296,7 +295,7 @@ DEMO_RESPONSES = {
                   "probs":{"high risk":0.06,"mid risk":0.18,"low risk":0.76},"ms":10.8},
 }
 
-# Physiologic ranges for clamping (min, max)
+
 PHYS_RANGES = {
     "Age":(15,49),"SystolicBP":(80,200),"DiastolicBP":(50,120),
     "BloodSugar_Fasting":(3.0,15.0),"BodyTemperature":(96.0,104.0),
@@ -450,7 +449,7 @@ PRESETS = {
 def celsius_to_f(c): return round(c * 9/5 + 32, 1)
 def f_to_celsius(f): return round((f - 32) * 5/9, 1)
 
-# ── Session state init ────────────────────────────────────────
+
 if "lang" not in st.session_state:
     st.session_state.lang = CFG.get("default_language", "en")
 if "consent_given" not in st.session_state:
@@ -460,7 +459,7 @@ if "last_result" not in st.session_state:
 if "telemetry_opted" not in st.session_state:
     st.session_state.telemetry_opted = CFG.get("telemetry_opt_in", False)
 
-# ── Sidebar ───────────────────────────────────────────────────
+
 with st.sidebar:
     st.markdown(f"## 🤱 {CFG['app_name']}")
     st.caption(f"v{CFG.get('app_version','2.0.0')}")
